@@ -1,55 +1,122 @@
-site_name: MkDocs
-site_url: https://www.mkdocs.org
-site_description: Project documentation with Markdown.
-site_author: MkDocs Team
-
-repo_url: https://github.com/mkdocs/mkdocs/
-edit_uri: ""
-
-theme:
-    name: mkdocs
-    highlightjs: true
-    hljs_languages:
-        - yaml
-        - django
+site_name: QGIS Animation Workbench
+site_description: 'A QGIS Plugin to create animated movies using QGIS.'
+site_author: 'Tim Sutton'
+docs_dir: docs/
+repo_name: 'timlinux/QGISAnimationWorkbench'
+repo_url: 'https://github.com/timlinux/QGISAnimationWorkbench'
+edit_uri: "https://github.com/timlinux/QGISAnimationWorkbench/blob/main/mkdocs/src/"
+#site_dir: docs
+copyright: Copyright Tim Sutton and Contributors, 2022
 
 nav:
-    - Home: index.md
-    - User Guide:
-        - Writing Your Docs: user-guide/writing-your-docs.md
-        - Styling Your Docs: user-guide/styling-your-docs.md
-        - Configuration: user-guide/configuration.md
-        - Deploying Your Docs: user-guide/deploying-your-docs.md
-        - Custom Themes: user-guide/custom-themes.md
-        - Plugins: user-guide/plugins.md
-    - About:
-        - Release Notes: about/release-notes.md
-        - Contributing: about/contributing.md
-        - License: about/license.md
+  - Home: index.md
+  - Quickstart:
+      - Installation: start/install.md
+      - Initial Configuration: start/configure.md
+  - FAQ: faq/faq.md
+  - Architecture:
+      - Design: architecture/design.md
+  - Tutorials:
+      - QGIS: tutorials/index.md
+  - Library:
+      - Expression Examples: library/snippets.md
 
-extra_css:
-    - css/extra.css
-    - css/pdf-print.css
+# Configuration
+theme:
+  name: material
+  #custom_dir: mkdocs/
+
+  # Don't include MkDocs' JavaScript
+  include_search_page: false
+  search_index_only: true
+
+  language: en
+  features:
+    - content.code.annotate
+    # - content.tabs.link
+    # - header.autohide
+    # - navigation.expand
+    - navigation.indexes
+    # - navigation.instant
+    - navigation.sections
+    - navigation.tabs
+    # - navigation.tabs.sticky
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+  palette:
+    - scheme: default
+      primary: blue
+      accent: gray
+      toggle:
+        icon: material/brightness-4
+        name: Switch to dark mode
+    - scheme: slate
+      primary: blue
+      accent: gray
+      toggle:
+        icon: material/brightness-6
+        name: Switch to light mode
+  font:
+    text: Roboto
+    code: Roboto Mono
+  favicon: assets/logo.png
+  icon:
+    logo: material/database
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/timlinux/QGISAnimationWorkbench
 
 markdown_extensions:
-    - toc:
-        permalink: 
-    - admonition
-    - def_list
-    - mdx_gh_links:
-        user: mkdocs
-        repo: mkdocs
-
-copyright: Copyright &copy; 2014 <a href="https://twitter.com/_tomchristie">Tom Christie</a>, Maintained by the <a href="/about/release-notes/#maintenance-team">MkDocs Team</a>.
-#google_analytics: ['UA-27795084-5', 'mkdocs.org']
+  - toc:
+      permalink: true
+  - pymdownx.snippets:
+      base_path: .
+  - pymdownx.details
+  - admonition
 
 plugins:
-    - search
-    - with-pdf:
-        copyright: Copyright &copy; 2014 Tom Christie.
-        cover_subtitle: Project documentation with Markdown.
-        output_path: ../document.pdf
-        #verbose: true
-        #debug_html: true
+  - search  
+  # See https://github.com/orzih/mkdocs-with-pdf#installation
+  - with-pdf:
+    author: Tim Sutton, Nyall Dawson
+    copyright: (c) Tim Sutton, Nyall Dawson 2022
 
-#use_directory_urls: false
+    cover: true
+    back_cover: true
+    cover_title: The QGIS Animation Workbench
+    cover_subtitle: A tool to bring your QGIS maps to life.
+    #custom_template_path: TODO
+
+    toc_title: Contents
+    heading_shift: false
+    toc_level: 3
+    ordered_chapter_level: 2
+      excludes_children:
+          - 'release-notes/:upgrading'
+          - 'release-notes/:changelog'
+
+      exclude_pages:
+          - 'bugs/'
+          - 'appendix/contribute/'
+      #convert_iframe:
+      #    - src: IFRAME SRC
+      #      img: POSTER IMAGE URL
+      #      text: ALTERNATE TEXT
+      #    - src: ...
+      two_columns_level: 3
+
+      #render_js: true
+      #headless_chrome_path: headless-chromium
+
+      output_path: TheQGISAnimationWorkbench.pdf
+      #enabled_if_env: ENABLE_PDF_EXPORT
+
+      debug_html: true
+      show_anchors: true
+      verbose: true
